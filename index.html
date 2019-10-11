@@ -5,7 +5,24 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1, maximum-scale=1">
     <title>Gyro</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
+    <script>
+	function init() {
+		if (window.DeviceOrientationEvent) {
+
+			window.addEventListener("deviceorientation", function(event) {
+				document.getElementById("y").style.webkitTransform = "scaleY("+(Math.round(event.beta))+")";  
+				document.getElementById("x").style.webkitTransform = "scaleX("+(Math.round(event.gamma))+")";
+				document.getElementById("angle").style.webkitTransform = "rotateZ("+(Math.round(event.alpha))+"deg)";  
+			}, true);
+
+
+
+		} else {
+		alert("Sorry, your browser doesn't support Device Orientation");
+		} 
+	}
+    </script>
+
 </head>
 <body onload="init()">
    <div id="x" class="line"></div>
